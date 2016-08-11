@@ -13,10 +13,6 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
-hello <- function() {
-  print("Hello, world!")
-}
-
 get_user <- function(client_id, user_id, by_username = TRUE){
   if(by_username == TRUE){
     username_lookup <- httr::GET(paste0("http://api.soundcloud.com/resolve?url=http://soundcloud.com/",user_id,"&client_id=",client_id))
