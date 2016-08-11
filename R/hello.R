@@ -31,4 +31,16 @@ get_user <- function(client_id, user_id, by_username = TRUE){
   }
 }
 
+get_track_info <- function(client_id, artist_track){
+  track_info_lookup <- httr::GET(paste0("http://api.soundcloud.com/resolve?url=http://soundcloud.com/",artist_track,"&client_id=",client_id))
+  track_info_content <- content(track_info_lookup, as = "parsed")
+  if(track_info_lookup$status_code == 403){
+    print('Sorry, information for this track could not be retrieved. Access forbidden.')
+  }else{
+    track_info_content <- as.data.frame(unlist(track_info_content))
+    names(track_info_content) <- 'track'
+    return(track_info_content)
+  }
+}
+
 ### Test commit ###
